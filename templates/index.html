@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kwore</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="/" class="logo-link">Kwore</a>
+            </div>            <nav>
+                <a href="#">Solutions</a>
+                <a href="#">Pricing</a>
+                <a href="#">About</a>
+                <button class="sign-out">Sign out</button>
+            </nav>
+        </div>
+        <div class="content-box">
+            <div class="profile">
+                <div class="company-info">
+                    <h1>COMPANY’S NAME</h1>
+                    <p>TestName</p>
+                    <p>Category</p>
+                    <p>Clothing</p>
+                </div>
+                <div class="user-info">
+                    <img src="{{ url_for('static', filename='img/khalil.jpeg') }}" alt="Khalil Masmoudi">
+                    <p>Khalil Masmoudi</p>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="products">
+                    <h2 class="title-box">Your products</h2>
+                    <p>You have no products created yet.</p>
+                    <form action="{{ url_for('trainproduct') }}" method="post">
+                        <button type="submit" class="train-product">Train a product</button>
+                    </form>
+                </div>
+                <div class="styles">
+                    <h2 class="title-box">Your styles</h2>
+                    <p>You have no styles created yet.</p>
+                    <form action="{{ url_for('trainstyle') }}" method="post">
+                        <button type="submit" class="train-style">Train a style</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <form action="{{ url_for('generate') }}" method="post">
+            <button type="submit" class="generate-btn">Generate content</button>
+        </form>
+    </div>
+</body>
+</body>
+</html>

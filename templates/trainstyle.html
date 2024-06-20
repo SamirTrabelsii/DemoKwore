@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Content - Kwore</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="/" class="logo-link">Kwore</a>
+            </div>
+            <nav>
+                <a href="#">Solutions</a>
+                <a href="#">Pricing</a>
+                <a href="#">About</a>
+                <button class="sign-out">Sign out</button>
+            </nav>
+        </div>
+        <div class="content-box">
+            <div class="left-section">
+                <h2 class="title-box">Train a style</h2>
+                <div class="form-group">
+                    <label for="product-name">Style name</label>
+                    <input type="text" id="product-name" placeholder="Enter a style name">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label>Style images</label>
+                    <div class="style-options">
+                        <div class="style-option">
+                            <label for="upload-images" class="add-style">+</label>
+                            <input type="file" id="upload-images" accept="image/*" multiple style="display: none;">
+                        </div>
+                        <p id="image-file-names">Upload images</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right-section">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div id="uploaded-images" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+            </div>
+        </div>
+
+        <button class="generate-btn" onclick="startProgress()">Train</button>
+
+        <div class="progress-container" style="display: none;">
+            <div class="progress-bar" id="progress-bar">0%</div>
+        </div>
+
+        <p id="progress-message" style="display: none;">Training in progress, you will receive a notification once your training is done.</p>
+
+        <style>
+            .progress-container {
+                width: 50%;
+                background-color: #f3f3f3;
+                border-radius: 25px;
+                margin: 50px auto; /* Center horizontally with auto margin */
+                height: 30px;
+                overflow: hidden;
+                text-align: center; /* Center text inside progress container */
+            }
+
+            .progress-bar {
+                height: 100%;
+                width: 0;
+                background-color: #4caf50;
+                text-align: center;
+                line-height: 30px;
+                color: white;
+                border-radius: 25px;
+            }
+
+            #progress-message {
+                text-align: center; /* Center text inside progress message */
+            }
+
+            #uploaded-images img {
+                max-width: 250px;
+                max-height: 250px;
+                border-radius: 10px;
+            }
+        </style>
+
+        <script>
+            function startProgress() {
+                const progressBarContainer = document.querySelector('.progress-container');
+                const progressBar = document.getElementById('progress-bar');
+                const progressMessage = document.getElementById('progress-message');
+
+                // Show the progress bar container
+                progressBarContainer.style.display = 'block';
+
+                // Show the progress message
+                progressMessage.style.display = 'block';
+
+                // Reset progress bar to 0%
+                progressBar.style.width = '0%';
+                progressBar.textContent = '0%';
+
+                // Duration for the progress (e.g., 20 seconds)
+                const duration = 900000; // 15 minutes in milliseconds
+
+                const startTime = Date.now();
+                const endTime = startTime + duration;
+
+                function updateProgress() {
+                    const currentTime = Date.now();
+                    const remainingTime = Math.max(0, endTime - currentTime);
+                    const progress = 1 - (remainingTime / duration);
+
+                    progressBar.style.width = progress * 100 + '%';
+                    progressBar.textContent = Math.round(progress * 100) + '%';
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateProgress);
+                    } else {
+                        // Hide progress message when progress is complete
+                        progressMessage.style.display = 'none';
+                        window.location.href = '/resultnewnew'; // Change this to the correct path if needed
+                    }
+                }
+
+                updateProgress();
+            }
+        </script>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#upload-images').change(function() {
+                var files = $(this)[0].files;
+                var fileNames = [];
+                var imageContainer = $('#uploaded-images');
+                imageContainer.empty();
+
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    fileNames.push(file.name);
+                    var reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        var img = $('<img>').attr('src', e.target.result);
+                        imageContainer.append(img);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+
+                $('#image-file-names').text(fileNames.join(', '));
+            });
+        });
+    </script>
+</body>
+</html>

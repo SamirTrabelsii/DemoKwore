@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Content - Kwore</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles3.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="/" class="logo-link">Kwore</a>
+            </div>            <nav>
+                <a href="#">Solutions</a>
+                <a href="#">Pricing</a>
+                <a href="#">About</a>
+                <button class="sign-out">Sign out</button>
+            </nav>
+        </div>
+        <div class="content-box">
+        </div>
+        <button class="generate-btn" onclick="startProgress()">Generate</button>
+
+        <div class="progress-container" style="display: none;">
+            <div class="progress-bar" id="progress-bar">0%</div>
+        </div>
+
+        <p id="progress-message" style="display: none;">Training in progress, you will receive a notification once your training is done.</p>
+
+        <style>
+            .progress-container {
+                width: 50%;
+                background-color: #f3f3f3;
+                border-radius: 25px;
+                margin: 50px auto; /* Center horizontally with auto margin */
+                height: 30px;
+                overflow: hidden;
+                text-align: center; /* Center text inside progress container */
+            }
+
+            .progress-bar {
+                height: 100%;
+                width: 0;
+                background-color: #4caf50;
+                text-align: center;
+                line-height: 30px;
+                color: white;
+                border-radius: 25px;
+            }
+
+            #progress-message {
+                text-align: center; /* Center text inside progress message */
+            }
+        </style>
+
+        <script>
+            function startProgress() {
+                const progressBarContainer = document.querySelector('.progress-container');
+                const progressBar = document.getElementById('progress-bar');
+                const progressMessage = document.getElementById('progress-message');
+                const contentBox = document.querySelector('.content-box');
+                const generateBtn = document.querySelector('.generate-btn');
+
+
+                // Show the progress bar container
+                progressBarContainer.style.display = 'block';
+
+                // Show the progress message
+                progressMessage.style.display = 'block';
+
+                // Reset progress bar to 0%
+                progressBar.style.width = '0%';
+                progressBar.textContent = '0%';
+
+                // Duration for the progress (e.g., 20 seconds)
+                const duration = 20000; // 20 seconds in milliseconds
+
+                const startTime = Date.now();
+                const endTime = startTime + duration;
+
+                function updateProgress() {
+                    const currentTime = Date.now();
+                    const remainingTime = Math.max(0, endTime - currentTime);
+                    const progress = 1 - (remainingTime / duration);
+
+                    progressBar.style.width = progress * 100 + '%';
+                    progressBar.textContent = Math.round(progress * 100) + '%';
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateProgress);
+                    } else {
+                        // Hide progress message when progress is complete
+                        progressMessage.style.display = 'none';
+
+                        // Display the picture and buttons in the content box
+                        contentBox.innerHTML = `
+                            <div class="main-content">
+                                <img src="{{ url_for('static', filename='img/generated2.png') }}" alt="generated result" style="width: 300px; border-radius: 10px;">
+                                <div class="button-container">
+                                    <form action="{{ url_for('generatenewnew') }}" method="post">
+                                        <button type="submit">
+                                            Regenerate   .<i class="fas fa-redo"></i>
+                                    </form>
+                                    </button>
+                                    <button>
+                                         Save   .<i class="fas fa-save"></i>
+                                    </button>
+                                    <form action="{{ url_for('indexx') }}" method="post">
+                                        <button>
+                                            Exit   .<i class="fas fa-times"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        `;
+                        generateBtn.style.display = 'none';
+                    }
+                }
+
+                updateProgress();
+            }
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,232 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2C0049;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header nav {
+    display: flex;
+    gap: 20px;
+}
+
+.header nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header .sign-out {
+    background-color: #fff;
+    color: #2C0049;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.content-box {
+    background: linear-gradient(to bottom right, #45006B, #2C0049);
+    padding: 20px;
+    border-radius: 15px;
+       display: flex;
+    justify-content: space-between;
+}
+.left-section, .right-section {
+    width: 48%;
+}
+
+h2 {
+    text-align: left;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-section, .right-section {
+    width: 48%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-group input {
+    width: 93%;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2C0049;
+    color: #fff;
+}
+.form-group-style input {
+    width: 90%;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2C0049;
+    color: #fff;
+}
+
+.size-options i {
+    color: #fff;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: #2C0049; /* Add your desired background color here */
+    padding: 15px; /* Optional: Add padding for better spacing */
+    border-radius: 30px; /* Rounded corners */
+    transition: border 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent; /* Bordure initiale transparente */
+}
+.size-options i.selected {
+    border: 2px solid lightblue; /* Bordure initiale transparente */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.style-options {
+    display: flex;
+    align-items: center;
+    background-color: #2C0049; /* Add your desired background color here */
+    padding: 15px; /* Optional: Add padding for better spacing */
+    border-radius: 30px; /* Rounded corners */
+}
+
+.style-option {
+    text-align: center;
+    margin-right: 20px;
+}
+
+.style-option img, .style-option button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    transition: border 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent; /* Bordure initiale transparente */
+}
+.style-option img.selected {
+    border: 2px solid lightblue; /* Bordure violette */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optionnel : pour un effet de surbrillance */
+}
+
+.style-option p {
+    margin-top: 10px;
+}
+.product-options {
+    display: flex;
+    align-items: center;
+    background-color: #2C0049; /* Add your desired background color here */
+    padding: 15px; /* Optional: Add padding for better spacing */
+    border-radius: 30px; /* Rounded corners */
+}
+
+.product-option {
+    text-align: center;
+    margin-right: 20px;
+}
+
+.product-option img, .product-option button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.product-option p {
+    margin-top: 10px;
+}
+
+.add-style, .add-product {
+    background-color: #fff;
+    color: #2C0049;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 50px; /* Ajustez la taille du cercle selon vos besoins */
+    height: 50px; /* Ajustez la taille du cercle selon vos besoins */
+    text-align: center;
+    line-height: 50px; /* Assurez-vous que cette valeur correspond à la hauteur pour centrer verticalement */
+}
+
+.generate-btn {
+    background-color: #fff;
+    color: #2C0049;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.form-group select {
+    width: 98%;
+    padding: 12px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 10px;
+    background-color: #2C0049;
+    color: #fff;
+    font-size: 16px; /* Adjust font size as needed */
+    appearance: none; /* Removes default arrow on some browsers */
+    -webkit-appearance: none; /* For older versions of Safari */
+    -moz-appearance: none; /* For Firefox */
+}
+
+.form-group select::-ms-expand {
+    display: none; /* Removes default arrow on IE 10+ */
+}
+
+/* Optional: Add additional styling for hover and focus states */
+.form-group select:hover,
+.form-group select:focus {
+    background-color: #4A0072;
+    outline: none;
+}
+.logo-link {
+color: white;        /* Make the text color white */
+text-decoration: none; /* Remove the underline */
+}
+
+.logo-link:hover {
+    color: white;        /* Optional: Keep the text white on hover */
+    text-decoration: none; /* Optional: Keep the underline removed on hover */
+}
+.title-box {
+    background-color: #978DED; /* Light purple background */
+    border-radius: 30px;       /* Rounded corners */
+    padding: 10px 20px;        /* Padding to give it some space */
+    display: inline-block;     /* Ensure it only takes as much space as needed */
+}

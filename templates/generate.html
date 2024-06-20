@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Content - Kwore</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles2.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="/" class="logo-link">Kwore</a>
+            </div>
+            <nav>
+                <a href="#">Solutions</a>
+                <a href="#">Pricing</a>
+                <a href="#">About</a>
+                <button class="sign-out">Sign out</button>
+            </nav>
+        </div>
+        <div class="content-box">
+            <div class="left-section">
+                <h2 class="title-box">Generate content</h2>
+                <div class="form-group">
+                    <label for="prompt">Prompt</label>
+                    <input type="text" id="prompt" placeholder="Enter prompt">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="negative-prompt">Negative Prompt</label>
+                    <input type="text" id="negative-prompt" placeholder="Enter negative prompt">
+                </div>
+                <div class="form-group">
+                    <label>Size</label>
+                    <div class="size-options">
+                        <i id="facebook" class="fab fa-facebook fa-2x"></i>
+                        <i id="instagram" class="fab fa-instagram fa-2x"></i>
+                        <i id="linkedin" class="fab fa-linkedin fa-2x"></i>
+                        <i id="twitter" class="fab fa-twitter fa-2x"></i>
+                        <i id="crop" class="fas fa-crop-alt fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="right-section">
+                <div class="form-group">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <label>Style</label>
+                    <div class="style-options">
+                        <div class="style-option">
+                            <img src="{{ url_for('static', filename='img/pixelart.jpeg') }}" alt="Pixel art">
+                            <p>Pixel art</p>
+                        </div>
+                        <div class="style-option">
+                            <img src="{{ url_for('static', filename='img/realistic.jpeg') }}" alt="Realistic">
+                            <p>Realistic</p>
+                        </div>
+                        <div class="style-option">
+                            <img src="{{ url_for('static', filename='img/3D.jpeg') }}" alt="3D">
+                            <p>3D</p>
+                        </div>
+                        <div class="style-option">
+                            <form action="{{ url_for('trainstyle') }}" method="post">
+                            <button type="submit" class="add-style">+</button>
+                            </form>
+                            <p>Train style</p>
+                        </div>
+                    </div>
+                <div class="form-group">
+                    <label>Product</label>
+                    <div class="product-options">
+                        <div class="product-option">
+                            <form action="{{ url_for('trainproduct') }}" method="post">
+                            <button type="submit" class="add-product">+</button>
+                            </form>
+                            <p>Train product</p>
+                        </div>
+                    </div>
+                </div>
+                    <form action="{{ url_for('progressgenerate') }}" method="post">
+                        <button type="submit" class="generate-btn">Generate</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const icons = document.querySelectorAll('.size-options i');
+
+    icons.forEach(icon => {
+        icon.addEventListener('click', function () {
+            // Remove 'selected' class from all icons
+            icons.forEach(i => i.classList.remove('selected'));
+            // Add 'selected' class to the clicked icon
+            this.classList.add('selected');
+        });
+    });
+    const images = document.querySelectorAll('.style-option img');
+
+    images.forEach(image => {
+        image.addEventListener('click', function () {
+            // Remove 'selected' class from all images
+            images.forEach(img => img.classList.remove('selected'));
+            // Add 'selected' class to the clicked image
+            this.classList.add('selected');
+        });
+    });
+});
+</script>
+
+
+</body>
+</html>
